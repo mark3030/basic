@@ -8,7 +8,9 @@ use yii;
 
 class DoController extends BaseController {
 
-
+    /**
+     * 插入库表数据
+     */
     public function actionAdd() {
         $FinancialDataModel = new FinancialData();
         $FinancialDataModel->loadData(Yii::$app->request->post(), '');
