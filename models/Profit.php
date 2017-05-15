@@ -4,9 +4,11 @@ namespace app\models;
 use yii\db\Exception;
 use yii\db\Query;
 
-class FinancialData extends BaseModel {
+class Profit extends BaseModel {
+    use ProfitTrait;
+
     public static function tableName() {
-        return 'financial_data';
+        return 'profit';
     }
 
     public function add() {
@@ -30,8 +32,6 @@ class FinancialData extends BaseModel {
     }
 
     public static function getItems($condition = [], $items = []) {
-        $d = self::find()->filterWhere($condition)->asArray()->one();
-        var_dump($d);exit;
         $query = new Query();
         $query->from(self::tableName())->filterWhere($condition);
 
@@ -42,8 +42,6 @@ class FinancialData extends BaseModel {
         $rows = parent::_result($rows);
         return $rows;
     }
-
-
 
 
 }

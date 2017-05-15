@@ -1,8 +1,8 @@
 <?php
 namespace app\controllers;
 
-use app\models\FinancialData;
 use app\models\GrossProfitMargin;
+use app\models\Profit;
 use app\models\ThreeFees;
 use yii;
 
@@ -12,9 +12,9 @@ class DoController extends BaseController {
      * 插入库表数据（dev）
      */
     public function actionAdd() {
-        $FinancialDataModel = new FinancialData();
-        $FinancialDataModel->loadData(Yii::$app->request->post(), '');
-        $status = $FinancialDataModel->add();
+        $profitModel = new Profit();
+        $profitModel->loadData(Yii::$app->request->post(), '');
+        $status = $profitModel->add();
         if ($status) {
             $result = '插入成功';
         } else {
@@ -26,19 +26,18 @@ class DoController extends BaseController {
     /*
      * 毛利率
      */
-    public function actionGrossProfitMargin() {
-        $grossProfitMarginModel = new GrossProfitMargin();
-        $result = $grossProfitMarginModel->getMargin();
+    public function actionGetGrossProfitMargin() {
+        $profitModel = new Profit();
+        $result = $profitModel->grossProfitMargin();
         return '毛利率：' . $result;
     }
 
     /**
      * 三费占比
      */
-    public function actionThreeFees() {
-        $threeFeesModel = new ThreeFees();
-        $threeFeesModel->loadData(Yii::$app->request->post(), '');
-        $result = $threeFeesModel->getThreeFees();
+    public function actionGetThreeFees() {
+        $profitModel = new Profit();
+        $result = $profitModel->threeFees();
         return '三费占比：' . $result;
     }
 }
