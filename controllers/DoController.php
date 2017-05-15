@@ -1,15 +1,13 @@
 <?php
 namespace app\controllers;
 
-use app\models\GrossProfitMargin;
 use app\models\Profit;
-use app\models\ThreeFees;
 use yii;
 
 class DoController extends BaseController {
 
     /**
-     * 插入库表数据（dev）
+     * 插入库表数据
      */
     public function actionAdd() {
         $profitModel = new Profit();
