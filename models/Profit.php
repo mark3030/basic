@@ -12,6 +12,7 @@ class Profit extends BaseModel {
     }
 
     public function add() {
+        echo 'ddd';exit;
         $model = self::findOne(['code' => $this->code, 'date' => $this->date]);
         if ($model === null) {
             $model = $this;
